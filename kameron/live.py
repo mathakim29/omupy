@@ -188,4 +188,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# uv run python -m rvc_api.live --in-device pulse --out-device pulse
+# uv run kameron live --in-device pulse --out-device pulse

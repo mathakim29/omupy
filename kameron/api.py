@@ -118,7 +118,7 @@ def convert(
 def main():
     """Run the API server."""
     uvicorn.run(
-        "rvc_api.api:app",
+        "kameron.api:app",
         host=os.getenv("API_HOST", "127.0.0.1"),
         port=int(API_PORT),
         reload=os.getenv("API_RELOAD", "0").lower() in {"1", "true", "yes"},

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "rvc-api"
+name = "kameron"
 version = "0.1.0"
 description = "A FastAPI server for RVC voice conversion"
 readme = "README.md"
@@ -27,11 +27,7 @@ dependencies = [
 ]
 
 [project.scripts]
-rvc-api = "rvc_api.api:main"
-rvc-server = "rvc_api.api:main"
-rvc-live = "rvc_api.live:main"
+kameron = "kameron.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["rvc_api"]
-
-# uv tool install --force git+https://github.com/mathakim29/voice-changer --with git+https://github.com/liyaodev/fairseq.git
+packages = ["kameron"]

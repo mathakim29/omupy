@@ -29,7 +29,7 @@
 1. Clone this repo 
 2. Run this 
 ```bash
-uv run rvc-api
+uv run kameron server
 ```
 
 > **NOTE:** All configs are in the .env file, they are included intentionally for demo purposes.
@@ -98,6 +98,6 @@ fields can be adjusted when experimenting with quality, pitch, or clarity.
 
 ## Live audio
 
-`rvc_api/live.py` also contains an experimental microphone-to-speaker conversion
+`kameron/live.py` also contains an experimental microphone-to-speaker conversion
 loop. 
 However please note to self, it's barely tested and only there as proof of concept. 
