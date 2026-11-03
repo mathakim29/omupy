@@ -3,20 +3,19 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "kameron"
+name = "omupy"
 version = "0.1.0"
-description = "A FastAPI server for RVC voice conversion"
+description = "API interface for RVC voice conversion"
 readme = "README.md"
 requires-python = "==3.10.*"
 license = { text = "MIT" }
 authors = [
-    { name = "RVC API contributors" }
+    { name = "Luqman Al-Hakim" }
 ]
 
 dependencies = [
     "fairseq>=0.12.2",
     "fastapi[standard]>=0.115.0",
-    "mojo>=1.2.0",
     "pedalboard>=0.9.17",
     "python-dotenv>=1.2.4",
     "rvc-python>=0.1.5",
@@ -27,7 +26,7 @@ dependencies = [
 ]
 
 [project.scripts]
-kameron = "kameron.cli:main"
+omupy = "omupy.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["kameron"]
+packages = ["omupy"]

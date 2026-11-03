@@ -1,6 +1,6 @@
 <div align="center">
   <h3> 
-    Retrieval Voice Cloning API 
+    omupy
   </h3>
 </div>
 
@@ -25,11 +25,8 @@
 </table>
 
 ## How to use it
-
-1. Clone this repo 
-2. Run this 
 ```bash
-uv run kameron server
+uvx --from git+https://github.com//mathakim29/voice-changer omupy server
 ```
 
 > **NOTE:** All configs are in the .env file, they are included intentionally for demo purposes.
@@ -97,7 +94,10 @@ fields can be adjusted when experimenting with quality, pitch, or clarity.
 </audio>
 
 ## Live audio
-
-`kameron/live.py` also contains an experimental microphone-to-speaker conversion
+This repo also contains an experimental microphone-to-speaker conversion
 loop. 
+Run 
+```bash
+omupy live --model-dir <model>
+```
 However please note to self, it's barely tested and only there as proof of concept. 

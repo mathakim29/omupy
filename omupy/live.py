@@ -156,6 +156,7 @@ def run_live_audio(in_dev=None, out_dev=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", help="Model folder name (default: first found)")
+    parser.add_argument("--model-dir", help="Path to a model directory to use directly")
     parser.add_argument("--in-device", help="Input device index or name")
     parser.add_argument("--out-device", help="Output device index or name")
     parser.add_argument("--list-devices", action="store_true")
@@ -168,17 +169,27 @@ def main():
     def dev(v):
         return int(v) if v and v.isdigit() else v
 
-    print(f"Scanning: {MODELS_DIR}")
-    models = find_models()
-    print(f"Found models: {list(models) or 'NONE'}")
+    if args.model_dir:
+        model_dir = Path(args.model_dir).expanduser().resolve()
+        pths = sorted(model_dir.glob("*.pth"))
+        if not pths:
+            parser.error(f"No .pth model found in {model_dir}")
+        indexes = sorted(model_dir.glob("*.index"))
+        name = model_dir.name
+        print(f"Using model directory: {model_dir}")
+        load_rvc(pths[0], str(indexes[0]) if indexes else "")
+    else:
+        print(f"Scanning: {MODELS_DIR}")
+        models = find_models()
+        print(f"Found models: {list(models) or 'NONE'}")
 
-    name = args.model if args.model in models else (next(iter(models), None))
-    if args.model and args.model not in models:
-        print(f"'{args.model}' not found, using {name}")
+        name = args.model if args.model in models else (next(iter(models), None))
+        if args.model and args.model not in models:
+            print(f"'{args.model}' not found, using {name}")
 
-    if name:
-        print(f"-> Loading: {name}")
-        load_rvc(*models[name])
+        if name:
+            print(f"-> Loading: {name}")
+            load_rvc(*models[name])
     engine.current_model = name
 
     run_live_audio(dev(args.in_device), dev(args.out_device))

@@ -29,15 +29,29 @@ def _server_config() -> tuple[str, int, bool]:
 
 
 def main() -> None:
-    _load_config()
     parser = argparse.ArgumentParser(prog="kameron", description="RVC voice conversion tools")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    subparsers.add_parser("server", help="Start the HTTP API server")
+    server_parser = subparsers.add_parser("server", help="Start the HTTP API server")
+    server_parser.add_argument(
+        "--models-dir",
+        help="Override the directory used to store and find RVC models",
+    )
     live_parser = subparsers.add_parser("live", help="Start live microphone conversion")
+    live_parser.add_argument(
+        "--models-dir",
+        help="Override the directory used to store and find RVC models",
+    )
+    live_parser.add_argument(
+        "--model-dir",
+        help="Use this model directory directly for live conversion",
+    )
     live_parser.add_argument("live_args", nargs=argparse.REMAINDER)
 
     args = parser.parse_args()
+    _load_config()
+    if args.models_dir:
+        os.environ["RVC_MODELS_DIR"] = args.models_dir
 
     if args.command == "server":
         from .api import main as server_main
@@ -46,5 +60,8 @@ def main() -> None:
     elif args.command == "live":
         from .live import main as live_main
 
-        sys.argv = [f"{parser.prog} live", *args.live_args]
+        live_args = list(args.live_args)
+        if args.model_dir:
+            live_args.extend(["--model-dir", args.model_dir])
+        sys.argv = [f"{parser.prog} live", *live_args]
         live_main()
