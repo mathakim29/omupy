@@ -1,11 +1,7 @@
-import sys
 import os
 import shutil
 import tempfile
 import zipfile
-import os
-import shutil
-import subprocess
 from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
@@ -15,7 +11,7 @@ import uvicorn
 load_dotenv()
 API_PORT = os.getenv("API_PORT", '8000')
 
-from engine import MODELS_DIR, safe_name, get_model_paths, rvc, current_model, lock
+from .engine import MODELS_DIR, safe_name, get_model_paths, rvc, current_model, lock
 
 app = FastAPI()
 
@@ -120,35 +116,12 @@ def convert(
 
 
 def main():
-    """Run the API and its Svelte development client together."""
-    client = run_client()
-    try:
-        uvicorn.run(
-            "rvc_api:app",
-            host="0.0.0.0",
-            port=int(API_PORT),
-            reload=True,
-        )
-    finally:
-        if client and client.poll() is None:
-            client.terminate()
-            try:
-                client.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                client.kill()
-
-
-def main(): 
-    sys.pycache_prefix = os.environ.get("PYTHONPYCACHEPREFIX", "/.cache/rvc-pycache")
-    import uvicorn
+    """Run the API server."""
     uvicorn.run(
-        "api:app",  # filename:app_variable
-        host="127.0.0.1",
-        port=8000,
-        reload=True,  # Auto-reloads code on save
+        "rvc_api.api:app",
+        host=os.getenv("API_HOST", "127.0.0.1"),
+        port=int(API_PORT),
+        reload=os.getenv("API_RELOAD", "0").lower() in {"1", "true", "yes"},
         log_level="info",
     )
 
-def live(): 
-    from .live import main
-    main()

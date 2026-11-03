@@ -98,6 +98,6 @@ fields can be adjusted when experimenting with quality, pitch, or clarity.
 
 ## Live audio
 
-`src/live.py` also contains an experimental microphone-to-speaker conversion
+`rvc_api/live.py` also contains an experimental microphone-to-speaker conversion
 loop. 
 However please note to self, it's barely tested and only there as proof of concept. 

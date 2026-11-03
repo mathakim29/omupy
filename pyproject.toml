@@ -3,14 +3,14 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "my-awesome-project"
+name = "rvc-api"
 version = "0.1.0"
-description = "A short description of my cool Python project"
+description = "A FastAPI server for RVC voice conversion"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-    { name = "Your Name", email = "you@example.com" }
+    { name = "RVC API contributors" }
 ]
 
 dependencies = [
@@ -27,9 +27,9 @@ dependencies = [
 ]
 
 [project.scripts]
-# executable-command = "module_name:function"
-rvc-server = "api:main"
+rvc-api = "rvc_api.api:main"
+rvc-server = "rvc_api.api:main"
+rvc-live = "rvc_api.live:main"
 
 [tool.hatch.build.targets.wheel]
-# Tells Hatchling to look inside the src directory for modules to pack
-packages = ["rvc-api/api.py"]
+packages = ["rvc_api"]

@@ -153,7 +153,7 @@ def run_live_audio(in_dev=None, out_dev=None):
     stop.set()
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", help="Model folder name (default: first found)")
     parser.add_argument("--in-device", help="Input device index or name")
@@ -183,5 +183,9 @@ if __name__ == "__main__":
 
     run_live_audio(dev(args.in_device), dev(args.out_device))
     print("Stopped.")
+
+
+if __name__ == "__main__":
+    main()
 
 # uv run python -m rvc_api.live --in-device pulse --out-device pulse
