@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "my-awesome-project"
+version = "0.1.0"
+description = "A short description of my cool Python project"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Your Name", email = "you@example.com" }
+]
+
+dependencies = [
+    "fairseq>=0.12.2",
+    "fastapi[standard]>=0.115.0",
+    "mojo>=1.2.0",
+    "pedalboard>=0.9.17",
+    "python-dotenv>=1.2.4",
+    "rvc-python>=0.1.5",
+    "scipy>=1.12.0",
+    "setuptools<81",
+    "sounddevice>=0.5.6",
+    "soundfile>=0.12.1",
+]
+
+[project.scripts]
+# executable-command = "module_name:function"
+rvc-server = "api:main"
+
+[tool.hatch.build.targets.wheel]
+# Tells Hatchling to look inside the src directory for modules to pack
+packages = ["rvc-api/api.py"]
