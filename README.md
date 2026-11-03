@@ -1,5 +1,5 @@
 <div align="center">
-  <h3> 
+  <h3>
     omupy
   </h3>
 </div>
@@ -26,7 +26,7 @@
 
 ## How to use it
 ```bash
-uvx --from git+https://github.com//mathakim29/voice-changer omupy server
+uvx --from git+https://github.com/mathakim29/voice-changer omupy server
 ```
 
 > **NOTE:** All configs are in the .env file, they are included intentionally for demo purposes.

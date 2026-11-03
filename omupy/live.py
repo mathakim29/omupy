@@ -11,7 +11,7 @@ import sounddevice as sd
 from scipy.signal import resample_poly
 
 from . import MODELS_DIR, lock, rvc
-import kameron as engine
+import omupy as engine
 
 SAMPLE_RATE = 44100
 BLOCK_SECONDS = 0.5
@@ -199,4 +199,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# uv run kameron live --in-device pulse --out-device pulse
+# uv run omupy live --in-device pulse --out-device pulse

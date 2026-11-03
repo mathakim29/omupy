@@ -1,4 +1,4 @@
-"""Command-line interface for Kameron."""
+"""Command-line interface for Omupy."""
 
 import argparse
 import os
@@ -29,7 +29,7 @@ def _server_config() -> tuple[str, int, bool]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="kameron", description="RVC voice conversion tools")
+    parser = argparse.ArgumentParser(prog="omupy", description="RVC voice conversion tools")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     server_parser = subparsers.add_parser("server", help="Start the HTTP API server")

@@ -1,4 +1,4 @@
-"""Kameron RVC voice conversion package and shared inference engine."""
+"""Omupy RVC voice conversion package and shared inference engine."""
 
 import os
 import re

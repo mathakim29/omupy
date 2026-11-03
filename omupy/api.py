@@ -115,7 +115,7 @@ def convert(
 def main(host: str, port: int, reload: bool):
     """Run the API server."""
     uvicorn.run(
-        "kameron.api:app",
+        "omupy.api:app",
         host=host,
         port=port,
         reload=reload,
