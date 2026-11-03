@@ -7,7 +7,7 @@ name = "rvc-api"
 version = "0.1.0"
 description = "A FastAPI server for RVC voice conversion"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = "==3.10.*"
 license = { text = "MIT" }
 authors = [
     { name = "RVC API contributors" }
@@ -33,3 +33,5 @@ rvc-live = "rvc_api.live:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["rvc_api"]
+
+# uv tool install --force git+https://github.com/mathakim29/voice-changer --with git+https://github.com/liyaodev/fairseq.git
