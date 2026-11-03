@@ -10,8 +10,8 @@ import soundfile as sf
 import sounddevice as sd
 from scipy.signal import resample_poly
 
-from .engine import rvc, MODELS_DIR, lock
-from . import engine
+from . import MODELS_DIR, lock, rvc
+import kameron as engine
 
 SAMPLE_RATE = 44100
 BLOCK_SECONDS = 0.5

@@ -1,17 +1,14 @@
-import os
 import shutil
 import tempfile
 import zipfile
 from pathlib import Path
-from dotenv import load_dotenv
 from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 import uvicorn
 
-load_dotenv()
-API_PORT = os.getenv("API_PORT", '8000')
+__version__ = "0.1.0"
 
-from .engine import MODELS_DIR, safe_name, get_model_paths, rvc, current_model, lock
+from . import MODELS_DIR, safe_name, get_model_paths, rvc, current_model, lock
 
 app = FastAPI()
 
@@ -115,13 +112,13 @@ def convert(
     return FileResponse(final, media_type="audio/wav", filename="output.wav")
 
 
-def main():
+def main(host: str, port: int, reload: bool):
     """Run the API server."""
     uvicorn.run(
         "kameron.api:app",
-        host=os.getenv("API_HOST", "127.0.0.1"),
-        port=int(API_PORT),
-        reload=os.getenv("API_RELOAD", "0").lower() in {"1", "true", "yes"},
+        host=host,
+        port=port,
+        reload=reload,
         log_level="info",
     )
 
